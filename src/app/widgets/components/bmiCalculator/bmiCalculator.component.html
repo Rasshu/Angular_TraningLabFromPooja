@@ -1,0 +1,14 @@
+<div>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <p>Height (in cm)</p>
+    <input type="text" id="height" value="" />
+    <p>Weight (in kg)</p>
+    <input type="text" id="weight" />
+    <button (click)="calculateBMI()">Calculate</button>
+    <br /><br />
+    <div id="result">
+      <h1>Result:{{ bmiResult }}</h1>
+    </div>
+  </div>
+</div>
