@@ -4,22 +4,29 @@
     <p>Height (in cm)</p>
     <input
       type="text"
+      [value]="height"
       #heightTextValue
       (input)="setHeight(heightTextValue.value)"
     />
     <p>Weight (in kg)</p>
     <input
       type="text"
+      [value]="weight"
       #weightTextValue
       (input)="setWeight(weightTextValue.value)"
     />
+    <br />
+    <p>Width</p>
+    <input type="text" [(ngModel)]="width" />
     <br /><br />
     <div>
       <button (click)="calculateBMI()">Calculate</button>
     </div>
-    <br /><br />
     <div>
       <h1>Result:{{ bmiResult }}</h1>
+    </div>
+    <div>
+      <button (click)="clearValue()">Clear</button>
     </div>
   </div>
 </div>

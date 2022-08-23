@@ -9,6 +9,7 @@ export class BMICalculatorComponent {
   bmiResult: string = '';
   height: number = 0;
   weight: number = 0;
+  width: number = 0;
   constructor() {}
   setHeight(height: string) {
     this.height = parseInt(height);
@@ -21,5 +22,12 @@ export class BMICalculatorComponent {
       this.weight /
       ((this.height * this.height) / 10000)
     ).toFixed(2);
+  }
+
+  clearValue(): void {
+    this.height = 0;
+    this.weight = 0;
+    this.bmiResult = '';
+    this.width = 0;
   }
 }
