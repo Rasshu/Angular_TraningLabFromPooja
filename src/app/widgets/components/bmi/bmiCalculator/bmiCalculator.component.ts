@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
 
 @Component({
-  selector: 'app-bmi',
+  selector: 'app-bmi-calculator',
   templateUrl: './bmiCalculator.component.html',
   styleUrls: ['./bmiCalculator.component.css'],
 })
 export class BMICalculatorComponent {
-  bmiResult: string = '';
+  bmiResult: number = 0;
   height: number = 0;
   weight: number = 0;
   width: number = 0;
+  @Output()
+  resultCalculated = new EventEmitter<BmiItemModel>();
+
   constructor() {}
   setHeight(height: string) {
     this.height = parseInt(height);
@@ -18,16 +22,16 @@ export class BMICalculatorComponent {
     this.weight = parseInt(weight);
   }
   calculateBMI(): void {
-    this.bmiResult = (
-      this.weight /
-      ((this.height * this.height) / 10000)
-    ).toFixed(2);
+    this.bmiResult = this.weight / ((this.height * this.height) / 10000);
+    this.resultCalculated.emit(
+      new BmiItemModel(this.height, this.weight, this.bmiResult)
+    );
   }
 
   clearValue(): void {
     this.height = 0;
     this.weight = 0;
-    this.bmiResult = '';
+    this.bmiResult = 0;
     this.width = 0;
   }
 }
