@@ -13,9 +13,12 @@
       #weightTextValue
       (input)="setWeight(weightTextValue.value)"
     />
-    <button (click)="calculateBMI()">Calculate</button>
     <br /><br />
-    <div id="result">
+    <div>
+      <button (click)="calculateBMI()">Calculate</button>
+    </div>
+    <br /><br />
+    <div>
       <h1>Result:{{ bmiResult }}</h1>
     </div>
   </div>
