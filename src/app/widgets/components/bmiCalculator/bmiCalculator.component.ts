@@ -7,12 +7,19 @@ import { Component } from '@angular/core';
 })
 export class BMICalculatorComponent {
   bmiResult: string = '';
+  height: number = 0;
+  weight: number = 0;
   constructor() {}
+  setHeight(height: string) {
+    this.height = parseInt(height);
+  }
+  setWeight(weight: string) {
+    this.weight = parseInt(weight);
+  }
   calculateBMI(): void {
-    let height: any = (<HTMLInputElement>document.getElementById('height'))
-      .value;
-    let weight: any = (<HTMLInputElement>document.getElementById('weight'))
-      .value;
-    this.bmiResult = (weight / ((height * height) / 10000)).toFixed(2);
+    this.bmiResult = (
+      this.weight /
+      ((this.height * this.height) / 10000)
+    ).toFixed(2);
   }
 }

@@ -2,9 +2,17 @@
   <div class="container">
     <h1>BMI Calculator</h1>
     <p>Height (in cm)</p>
-    <input type="text" id="height" value="" />
+    <input
+      type="text"
+      #heightTextValue
+      (input)="setHeight(heightTextValue.value)"
+    />
     <p>Weight (in kg)</p>
-    <input type="text" id="weight" />
+    <input
+      type="text"
+      #weightTextValue
+      (input)="setWeight(weightTextValue.value)"
+    />
     <button (click)="calculateBMI()">Calculate</button>
     <br /><br />
     <div id="result">
