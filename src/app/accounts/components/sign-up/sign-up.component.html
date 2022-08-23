@@ -1,0 +1,72 @@
+<h1>Sign Up Component</h1>
+<!-- <div class="signUpContainer">
+  <p>UserName</p>
+  <input type="tex" [(ngModel)]="username" />
+  <p>Password</p>
+  <input type="text" [(ngModel)]="password" />
+  <p>Email</p>
+  <input type="text" [(ngModel)]="email" />
+  <div>
+    <button type="button" (click)="signUp()">SIGN UP</button>
+    <button type="button" class="clearBtn" (click)="clear()">Clear</button>
+  </div>
+</div> -->
+<form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm.form)">
+  <div class="signUpContainer">
+    <p>
+      UserName:
+      <input
+        type="text"
+        name="usernameFieldControl"
+        [(ngModel)]="username"
+        #userNameFormControl="ngModel"
+        required
+      />
+    </p>
+    <div *ngIf="userNameFormControl.errors">
+      <output *ngIf="userNameFormControl.errors['required']"
+        >User Name is required
+      </output>
+    </div>
+
+    <p>
+      Password:
+      <input
+        type="text"
+        name="passwordFieldControl"
+        [(ngModel)]="password"
+        #passwordFormControl="ngModel"
+        required
+      />
+    </p>
+    <div *ngIf="passwordFormControl.errors">
+      <output *ngIf="passwordFormControl.errors['required']"
+        >Password is required
+      </output>
+    </div>
+    <p>
+      Email:
+      <input
+        type="text"
+        name="emailFieldControl"
+        [(ngModel)]="email"
+        #emailFormControl="ngModel"
+        required
+        [pattern]="emailPattern"
+      />
+    </p>
+    <div *ngIf="emailFormControl.errors">
+      <div *ngIf="emailFormControl.errors['required']">Email is required.</div>
+      <div *ngIf="emailFormControl.errors['pattern']">Email not valid.</div>
+    </div>
+    <div>
+      <input type="submit" value="submit" formnovalidate />
+      <input
+        type="button"
+        value="Clear"
+        class="clearBtn"
+        (click)="clearForm(signUpForm.form)"
+      />
+    </div>
+  </div>
+</form>
