@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { BmiCalculatorService } from 'src/app/services/bmiCalculatorService.service';
 import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
 
 @Component({
@@ -13,7 +14,7 @@ import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
   styleUrls: ['./bmi-calculator-history.component.css'],
 })
 export class BmiCalculatorHistoryComponent implements OnInit {
-  constructor() {}
+  constructor(private bmiService: BmiCalculatorService) {}
   @Input()
   bmiResultData = new BmiItemModel(0, 0, 0);
   bmiResultHistory: Array<any> = [];
@@ -29,4 +30,9 @@ export class BmiCalculatorHistoryComponent implements OnInit {
   //     console.log('bmiResultHistory', this.bmiResultHistory);
   //   }
   // }
+  showHistoryData() {
+    this.bmiService.showHistory().subscribe((data: any) => {
+      this.bmiResultHistory = data;
+    });
+  }
 }
