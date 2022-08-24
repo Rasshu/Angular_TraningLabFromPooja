@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
 
 @Component({
@@ -7,10 +7,12 @@ import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
   styleUrls: ['./bmiCalculator.component.css'],
 })
 export class BMICalculatorComponent {
+  @Input()
   bmiResult: number = 0;
+  width: number = 0;
   height: number = 0;
   weight: number = 0;
-  width: number = 0;
+
   @Output()
   resultCalculated = new EventEmitter<BmiItemModel>();
 
@@ -22,10 +24,8 @@ export class BMICalculatorComponent {
     this.weight = parseInt(weight);
   }
   calculateBMI(): void {
-    this.bmiResult = this.weight / ((this.height * this.height) / 10000);
-    this.resultCalculated.emit(
-      new BmiItemModel(this.height, this.weight, this.bmiResult)
-    );
+    // this.bmiResult = this.weight / ((this.height * this.height) / 10000);
+    this.resultCalculated.emit(new BmiItemModel(this.height, this.weight, 0));
   }
 
   clearValue(): void {

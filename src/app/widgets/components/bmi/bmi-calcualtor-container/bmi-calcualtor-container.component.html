@@ -2,8 +2,10 @@
 <div>
   <app-bmi-calculator
     (resultCalculated)="onBmiresultCalculated($event)"
+    [bmiResult]="bmiResultValue"
   ></app-bmi-calculator>
   <app-bmi-calculator-history
     [bmiResultData]="bmiData"
+    #bmiCHS
   ></app-bmi-calculator-history>
 </div>
