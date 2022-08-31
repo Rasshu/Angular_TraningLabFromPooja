@@ -5,8 +5,11 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { BmiCalculatorService } from 'src/app/services/bmiCalculatorService.service';
 import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
+import { fetchHistory } from '../../../../actions/bmiCalculator.actions';
 
 @Component({
   selector: 'app-bmi-calculator-history',
@@ -14,7 +17,11 @@ import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
   styleUrls: ['./bmi-calculator-history.component.css'],
 })
 export class BmiCalculatorHistoryComponent implements OnInit {
-  constructor(private bmiService: BmiCalculatorService) {}
+  bmiResultHistory$ = this.store.select('bmiResultHistory');
+  constructor(
+    private bmiService: BmiCalculatorService,
+    private store: Store<{ bmiResultHistory: Array<any> }>
+  ) {}
   @Input()
   bmiResultData = new BmiItemModel(0, 0, 0);
   bmiResultHistory: Array<any> = [];
@@ -31,8 +38,13 @@ export class BmiCalculatorHistoryComponent implements OnInit {
   //   }
   // }
   showHistoryData() {
-    this.bmiService.showHistory().subscribe((data: any) => {
-      this.bmiResultHistory = data;
+    // this.bmiService.showHistory().subscribe((data: any) => {
+    //   this.bmiResultHistory = data;
+    // });
+    this.store.dispatch(fetchHistory());
+    this.bmiResultHistory$.subscribe((data: any) => {
+      this.bmiResultHistory = data.bmiResultHistory;
     });
+    console.log('bmiResultHistory', this.bmiResultHistory$);
   }
 }

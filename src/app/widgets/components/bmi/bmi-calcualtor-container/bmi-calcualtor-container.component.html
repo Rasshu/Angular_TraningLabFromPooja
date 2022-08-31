@@ -2,7 +2,7 @@
 <div>
   <app-bmi-calculator
     (resultCalculated)="onBmiresultCalculated($event)"
-    [bmiResult]="bmiResultValue"
+    [bmiResult]="bmiResult$ | async"
   ></app-bmi-calculator>
   <app-bmi-calculator-history
     [bmiResultData]="bmiData"

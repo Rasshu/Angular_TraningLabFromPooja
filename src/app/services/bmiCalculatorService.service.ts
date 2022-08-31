@@ -18,6 +18,7 @@ export class BmiCalculatorService {
   //   return result;
   // }
   calculateBmi(weight: number, height: number) {
+    console.log(weight, height);
     return this.httpClient.post('http://localhost:3200/bmi/calculate', {
       height: height,
       weight: weight,

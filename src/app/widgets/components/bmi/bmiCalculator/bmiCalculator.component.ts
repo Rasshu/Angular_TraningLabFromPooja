@@ -8,7 +8,7 @@ import { BmiItemModel } from 'src/app/widgets/models/bmiItem.model';
 })
 export class BMICalculatorComponent {
   @Input()
-  bmiResult: number = 0;
+  bmiResult: any;
   width: number = 0;
   height: number = 0;
   weight: number = 0;
